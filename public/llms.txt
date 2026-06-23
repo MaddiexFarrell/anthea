@@ -1,0 +1,29 @@
+# Anthea
+
+> Anthea is a specialist recruiting partner that helps fast-growing startups hire screened growth and marketing talent. We review, meet, and interview candidates before making introductions, so companies only spend time with people who fit the role.
+
+## What we do
+- Source and screen growth and marketing talent for startups
+- Review each candidate's background, skills, and growth/marketing fit
+- Meet candidates to understand goals and strengths
+- Run structured interviews so every candidate is assessed consistently
+- Introduce a curated shortlist to the startups that fit them best
+
+## Who we work with
+- Companies: fast-growing startups hiring across growth and marketing
+- Candidates: early-career talent looking for internships and new grad roles in growth and marketing
+
+## Talent areas
+Growth marketing, performance and paid, lifecycle and CRM, content and brand, product marketing, marketing analytics, SEO and organic, community and social.
+
+## How we work
+1. Screen — review background, skills, and growth/marketing fit
+2. Meet — understand goals, strengths, and what's next
+3. Interview — structured, consistent assessment
+4. Match — introduce a curated shortlist with context on both sides
+
+## Links
+- Home (for startups): https://antheatalent.com/
+- For candidates: https://antheatalent.com/candidates
+- Get started / contact: https://antheatalent.com/contact
+- Email: hello@antheatalent.com

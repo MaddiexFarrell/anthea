@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+/* =============================================================================
+   Anthea — recruiting design system
+   Calm, editorial, light. A warm paper canvas with a deep forest-green brand
+   ink, an elegant serif (Newsreader) reserved for display moments, and Inter
+   for everything functional. Inspired by antheatalent.com: generous whitespace,
+   restrained motion, quiet authority. Color is reserved for the brand green and
+   soft sage section tints — never decorative noise.
+   ============================================================================= */
+
+@theme {
+  /* Core — warm paper canvas, true-white surfaces, deep green ink */
+  --color-background: #f7f5ef;
+  --color-foreground: #14271d;
+
+  --color-paper: #f7f5ef;
+  --color-cream: #f1efe6;
+  --color-surface: #ffffff;
+
+  /* Brand greens, anchored to the logo's deep forest (#032314) */
+  --color-forest: #0b3b29;
+  --color-forest-deep: #062417;
+  --color-forest-hover: #0f4a34;
+  --color-ink: #0c2a1e;
+
+  /* Soft sage tints for alternating sections */
+  --color-sage: #e7eee4;
+  --color-sage-soft: #eef2ea;
+
+  /* Text + lines */
+  --color-muted: #51605a;
+  --color-muted-foreground: #6a7872;
+  --color-border: rgba(12, 42, 30, 0.12);
+  --color-border-strong: rgba(12, 42, 30, 0.22);
+
+  /* Radius — soft, generous */
+  --radius: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Typography — Newsreader display serif + Inter UI sans */
+  --font-family-headline: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-family-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --animate-fade-in: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes a-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "ss01" 1;
+  }
+
+  button,
+  [role="button"],
+  a {
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(11, 59, 41, 0.28);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(11, 59, 41, 0.45);
+  }
+
+  ::selection {
+    background: rgba(11, 59, 41, 0.16);
+  }
+}
+
+@layer utilities {
+  /* Editorial display serif — for hero + section titles only. Optical sizing,
+     tight tracking, slightly tighter leading. */
+  .font-display {
+    font-family: var(--font-family-headline);
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+  }
+
+  /* Quiet uppercase eyebrow used above section titles. */
+  .eyebrow {
+    font-size: 11px;
+    line-height: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+
+  /* Scroll reveal — a calm fade + small rise. Driven by an IntersectionObserver
+     that adds .is-visible. Honors reduced-motion via the media query below. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered children: set --i on each child for a cascading delay. */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .marquee-track {
+    animation: a-marquee 38s linear infinite;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal-stagger > *,
+  .animate-fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}

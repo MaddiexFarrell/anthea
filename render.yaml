@@ -1,0 +1,28 @@
+# Render Blueprint — Anthea marketing site.
+# https://docs.render.com/blueprint-spec
+#
+# Runs as a Node web service (not a static site) because the contact form's
+# /api/intake route writes submissions to Notion at request time. The build
+# still PRERENDERS every route to static HTML (./dist/...); serve.mjs serves
+# those files directly and handles /api/intake on top.
+#
+# Set NOTION_TOKEN, NOTION_STARTUPS_DB_ID, and NOTION_CANDIDATES_DB_ID in the
+# Render dashboard (marked sync: false below so they are not stored in git).
+
+services:
+  - type: web
+    name: anthea-landing
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NOTION_TOKEN
+        sync: false
+      - key: NOTION_STARTUPS_DB_ID
+        sync: false
+      - key: NOTION_CANDIDATES_DB_ID
+        sync: false

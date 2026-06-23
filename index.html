@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="64x64" />
+    <link rel="shortcut icon" href="/favicon/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Anthea" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- Primary. NOTE: per-page <title>, description, robots, canonical, and the
+         OG/Twitter tags are rendered per route by <PageMeta>
+         (src/components/page-meta.tsx) and baked into each prerendered page by
+         vite-react-ssg. Only site-wide, route-invariant tags live here. -->
+    <meta name="author" content="Anthea" />
+    <meta name="publisher" content="Anthea" />
+    <meta
+      name="keywords"
+      content="growth hiring, marketing talent, startup recruiting, growth marketing recruiter, hire growth marketer, marketing internships, new grad growth roles, startup talent, screened candidates"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#0b3b29" />
+    <meta name="color-scheme" content="light" />
+
+    <meta property="og:site_name" content="Anthea" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Display + body faces: Newsreader (editorial serif) + Inter (UI sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap"
+    />
+
+    <!--
+      Structured data for search engines and LLM crawlers (GEO). Inlined here so
+      non-JS-executing crawlers can read it from the static HTML response.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://antheatalent.com/#organization",
+            "name": "Anthea",
+            "alternateName": ["Anthea Talent"],
+            "url": "https://antheatalent.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://antheatalent.com/favicon/favicon.png",
+              "width": 64,
+              "height": 64
+            },
+            "description": "Anthea helps fast-growing startups hire screened growth and marketing talent. We review, meet, and interview candidates before making introductions, so you only spend time with people who fit the role.",
+            "email": "hello@antheatalent.com",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "hello@antheatalent.com",
+                "availableLanguage": ["English"]
+              }
+            ]
+          },
+          {
+            "@type": "EmploymentAgency",
+            "@id": "https://antheatalent.com/#agency",
+            "name": "Anthea",
+            "url": "https://antheatalent.com/",
+            "image": "https://antheatalent.com/hero.jpg",
+            "logo": "https://antheatalent.com/favicon/favicon.png",
+            "description": "Anthea is a specialist recruiting partner for fast-growing startups hiring growth and marketing talent. We screen, meet, and interview early-career candidates, then introduce a curated shortlist to the companies that fit them best.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "knowsAbout": [
+              "Growth marketing hiring",
+              "Performance marketing recruiting",
+              "Lifecycle and CRM hiring",
+              "Content and brand marketing talent",
+              "Early-career and new grad recruiting"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://antheatalent.com/#website",
+            "url": "https://antheatalent.com/",
+            "name": "Anthea",
+            "description": "Where ambitious startups meet screened growth and marketing talent.",
+            "publisher": {"@id": "https://antheatalent.com/#organization"},
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://antheatalent.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What roles does Anthea help startups hire for?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Anthea focuses on growth and marketing talent for fast-growing startups — performance and growth marketing, lifecycle and CRM, content and brand, and early-career generalists across internships and new grad roles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Anthea screen candidates?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We review each candidate's background and growth/marketing fit, meet them to understand their goals and strengths, and run a structured interview so every candidate is assessed consistently before any introduction."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How fast can Anthea introduce candidates?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Once we understand the role, we introduce a curated shortlist of screened candidates — typically within days, not weeks."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

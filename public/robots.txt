@@ -1,0 +1,39 @@
+# https://antheatalent.com — robots policy
+# Allow well-behaved search engines and AI crawlers to index the marketing site.
+
+User-agent: *
+Allow: /
+
+# Common AI / LLM crawlers — explicitly allowed so this site can be cited by
+# generative search engines (GEO).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://antheatalent.com/sitemap.xml
