@@ -19,7 +19,7 @@ export function NotFound() {
       </p>
       <Link
         to="/"
-        className="mt-2 inline-flex items-center rounded-full bg-forest px-6 py-3 font-medium text-paper transition-colors hover:bg-forest-hover"
+        className="mt-2 inline-flex items-center rounded-lg bg-forest px-6 py-3 font-medium text-paper transition-colors hover:bg-forest-hover"
       >
         Back to home
       </Link>

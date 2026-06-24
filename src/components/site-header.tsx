@@ -34,7 +34,7 @@ export function SiteHeader() {
           aria-label="Anthea home"
           className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40"
         >
-          <Wordmark className="text-[26px] md:text-[28px]" />
+          <Wordmark className="h-6 w-auto md:h-7" />
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2 md:gap-6">
@@ -54,7 +54,7 @@ export function SiteHeader() {
           })}
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 font-medium text-[13px] text-paper transition-colors hover:bg-forest-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40"
+            className="inline-flex items-center gap-2 rounded-lg bg-forest px-5 py-2.5 font-medium text-[13px] text-paper transition-colors hover:bg-forest-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40"
           >
             Get started
             <span aria-hidden="true">&rarr;</span>

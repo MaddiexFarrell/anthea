@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
-            <Wordmark className="text-3xl" />
+            <Wordmark className="h-8 w-auto" />
             <p className="mt-4 text-sm text-muted leading-[1.6]">
               Where ambitious startups meet screened growth and marketing talent.
             </p>

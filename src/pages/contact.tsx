@@ -332,7 +332,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-4 inline-flex items-center justify-center gap-2 self-start rounded-full bg-forest px-7 py-3.5 font-medium text-paper transition-colors hover:bg-forest-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-4 inline-flex items-center justify-center gap-2 self-start rounded-lg bg-forest px-7 py-3.5 font-medium text-paper transition-colors hover:bg-forest-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? 'Sending…' : 'Send'}
                   {!submitting && <span aria-hidden="true">&rarr;</span>}

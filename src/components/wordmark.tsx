@@ -1,13 +1,20 @@
-/* Brand lockup. The supplied wordmark asset is dark-on-black (unusable on a
-   light canvas), so the brand renders as editorial serif text in forest green —
-   scalable, crisp at any size, and matching the logo's typographic character. */
-export function Wordmark({className = ''}: {className?: string}) {
+/* Brand wordmark. The supplied logo is dark-on-black, so two transparent,
+   recolored variants are generated into /public: forest green for light
+   backgrounds and warm paper for dark backgrounds. Control size with a height
+   class via `className` (e.g. "h-7 w-auto"). */
+export function Wordmark({
+  className = 'h-7 w-auto',
+  variant = 'forest',
+}: {
+  className?: string
+  variant?: 'forest' | 'light'
+}) {
   return (
-    <span
-      className={`font-display text-forest leading-none ${className}`}
-      style={{letterSpacing: '-0.01em'}}
-    >
-      Anthea
-    </span>
+    <img
+      src={variant === 'light' ? '/anthea-logo-light.png' : '/anthea-logo.png'}
+      alt="Anthea"
+      draggable={false}
+      className={`select-none ${className}`}
+    />
   )
 }
