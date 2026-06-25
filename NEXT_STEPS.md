@@ -59,9 +59,15 @@ This makes form submissions land in your Notion workspace.
 1. Create a Notion integration: https://www.notion.so/my-integrations
    (copy the secret token it gives you).
 2. Create **two** Notion databases — one for "I'm hiring" (startups) and one for
-   "I'm looking for a role" (candidates). Each needs these columns:
-   - `Name` (Title), `Email` (Email), `Organization` (Text),
-     `Message` (Text), `Source` (Text)
+   "I'm looking for a role" (candidates). Column names must match exactly.
+
+   The **startups** database needs:
+   - `Name` (Title), `Organization` (Text — the company name), `Email` (Email),
+     `Roles hiring` (Text), `Role type` (Text), `Message` (Text), `Source` (Text)
+
+   The **candidates** database needs:
+   - `Name` (Title), `Email` (Email), `University` (Text), `LinkedIn` (Text),
+     `Role wanted` (Text), `Experience` (Text), `Message` (Text), `Source` (Text)
 3. Share both databases with your integration (•••  → **Connections**).
 4. In **Render → your service → Environment**, add these three values:
    - `NOTION_TOKEN` — the secret from step 1

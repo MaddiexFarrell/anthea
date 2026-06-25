@@ -13,12 +13,29 @@
 //   NOTION_CANDIDATES_DB_ID Database id for "I'm looking for a role" submissions
 //   NOTION_VERSION          Optional, defaults to 2022-06-28
 //
-// Expected Notion database properties (create both databases with these):
-//   Name          — Title
-//   Email         — Email
-//   Organization  — Text (rich_text)
-//   Message       — Text (rich_text)
-//   Source        — Text (rich_text)   (first-touch UTM attribution)
+// Expected Notion database properties:
+//
+//   STARTUPS database ("I'm hiring"):
+//     Name          — Title
+//     Organization  — Text (rich_text)   (the company name)
+//     Email         — Email
+//     Roles hiring  — Text (rich_text)
+//     Role type     — Text (rich_text)   (Intern / Full-time)
+//     Message       — Text (rich_text)
+//     Source        — Text (rich_text)   (first-touch UTM attribution)
+//
+//   CANDIDATES database ("I'm looking for a role"):
+//     Name          — Title
+//     Email         — Email
+//     University    — Text (rich_text)
+//     LinkedIn      — Text (rich_text)
+//     Role wanted   — Text (rich_text)
+//     Experience    — Text (rich_text)
+//     Message       — Text (rich_text)
+//     Source        — Text (rich_text)   (first-touch UTM attribution)
+//
+// Property names must match EXACTLY (including spaces and capitalization), or
+// Notion rejects the write.
 //
 // DRY-RUN: if NOTION_TOKEN is unset, valid submissions are logged to the console
 // and accepted (HTTP 201). This lets the form work locally without secrets; set
@@ -73,13 +90,24 @@ function richText(content) {
   return {rich_text: [{type: 'text', text: {content: content.slice(0, 1900)}}]}
 }
 
-function buildProperties(data, source) {
+function buildProperties(intent, data, source) {
   const props = {
     Name: {title: [{type: 'text', text: {content: data.name.slice(0, 200)}}]},
     Email: {email: data.email},
     Message: richText(data.message),
   }
-  if (data.organization) props.Organization = richText(data.organization)
+
+  if (intent === 'hiring') {
+    if (data.organization) props.Organization = richText(data.organization)
+    if (data.rolesHiring) props['Roles hiring'] = richText(data.rolesHiring)
+    if (data.roleType) props['Role type'] = richText(data.roleType)
+  } else {
+    if (data.university) props.University = richText(data.university)
+    if (data.linkedin) props.LinkedIn = richText(data.linkedin)
+    if (data.roleWanted) props['Role wanted'] = richText(data.roleWanted)
+    if (data.experience) props.Experience = richText(data.experience)
+  }
+
   if (source) props.Source = richText(source)
   return props
 }
@@ -118,18 +146,39 @@ export async function handleIntakeRequest(req, res) {
     return
   }
 
-  const name = typeof data.name === 'string' ? data.name.trim() : ''
-  const email = typeof data.email === 'string' ? data.email.trim() : ''
-  const intent = data.intent === 'hiring' || data.intent === 'candidate' ? data.intent : ''
-  const message = typeof data.message === 'string' ? data.message.trim() : ''
-  const organization =
-    typeof data.organization === 'string' ? data.organization.trim() : ''
+  const str = (key) => (typeof data[key] === 'string' ? data[key].trim() : '')
 
+  const name = str('name')
+  const email = str('email')
+  const intent = data.intent === 'hiring' || data.intent === 'candidate' ? data.intent : ''
+  const message = str('message')
+
+  // Fields that differ by intent. We only validate the ones each form sends.
+  const clean = {name, email, message}
   const errors = {}
-  if (!name) errors.name = ['Please enter your name.']
+
+  if (!name) errors.name = ['This field is required.']
   if (!EMAIL_PATTERN.test(email)) errors.email = ['Enter a valid email address.']
-  if (!intent) errors.intent = ['Let us know what you\u2019re looking for.']
-  if (!message) errors.message = ['A short message helps us help you.']
+  if (!message) errors.message = ['This field is required.']
+
+  if (intent === 'hiring') {
+    clean.organization = str('organization')
+    clean.rolesHiring = str('rolesHiring')
+    clean.roleType = str('roleType')
+    if (!clean.organization) errors.organization = ['This field is required.']
+    if (!clean.rolesHiring) errors.rolesHiring = ['This field is required.']
+    if (!clean.roleType) errors.roleType = ['This field is required.']
+  } else if (intent === 'candidate') {
+    clean.university = str('university')
+    clean.linkedin = str('linkedin')
+    clean.roleWanted = str('roleWanted')
+    clean.experience = str('experience')
+    if (!clean.roleWanted) errors.roleWanted = ['This field is required.']
+    if (!clean.experience) errors.experience = ['This field is required.']
+  } else {
+    errors.intent = ['Let us know what you\u2019re looking for.']
+  }
+
   if (Object.keys(errors).length > 0) {
     sendJson(res, 400, errors)
     return
@@ -139,7 +188,6 @@ export async function handleIntakeRequest(req, res) {
     .map((k) => `${k}=${String(data[k]).slice(0, 200)}`)
     .join(' ')
 
-  const clean = {name, email, organization, message}
   const databaseId =
     intent === 'hiring'
       ? process.env.NOTION_STARTUPS_DB_ID
@@ -156,7 +204,7 @@ export async function handleIntakeRequest(req, res) {
   }
 
   try {
-    await writeToNotion(databaseId, buildProperties(clean, source))
+    await writeToNotion(databaseId, buildProperties(intent, clean, source))
     sendJson(res, 201, {ok: true})
   } catch (error) {
     console.error('[intake] Notion write failed:', error)

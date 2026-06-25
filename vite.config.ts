@@ -2,7 +2,13 @@ import {writeFileSync} from 'node:fs'
 import {join} from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import {defineConfig, type PluginOption, type PreviewServer, type ViteDevServer} from 'vite'
+import {
+  defineConfig,
+  loadEnv,
+  type PluginOption,
+  type PreviewServer,
+  type ViteDevServer,
+} from 'vite'
 // Loads vite-react-ssg's `ssgOptions` augmentation onto Vite's UserConfig.
 import type {ViteReactSSGOptions} from 'vite-react-ssg'
 // @ts-expect-error — plain .mjs handler shared with the production server.
@@ -67,7 +73,23 @@ function intakeApiPlugin(): PluginOption {
   }
 }
 
-export default defineConfig({
+export default defineConfig(({mode}) => {
+  /* Vite only exposes VITE_-prefixed vars to the client and does NOT put any of
+     them on process.env. The intake handler runs server-side and reads its Notion
+     secrets from process.env, so we load the .env files here and copy the
+     server-side keys across. In production (Render) these are already set in the
+     real environment, so the `?? process.env` guard leaves those untouched. */
+  const env = loadEnv(mode, process.cwd(), '')
+  for (const key of [
+    'NOTION_TOKEN',
+    'NOTION_STARTUPS_DB_ID',
+    'NOTION_CANDIDATES_DB_ID',
+    'NOTION_VERSION',
+  ]) {
+    if (!process.env[key] && env[key]) process.env[key] = env[key]
+  }
+
+  return {
   plugins: [react(), tailwindcss(), intakeApiPlugin()],
   ssgOptions: {
     dirStyle: 'nested',
@@ -84,4 +106,5 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: ['.onrender.com', '.antheatalent.com'],
   },
+  }
 })

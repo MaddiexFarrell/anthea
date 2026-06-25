@@ -87,19 +87,19 @@ const pricingFeatures = [
 const heroCollage = {
   left: [
     {
-      src: '/images/event.jpg',
+      src: '/images/hero-3.jpg',
       alt: 'Stylish young professionals connecting at an Anthea event',
       ratio: 'aspect-[4/3]',
     },
     {
-      src: '/images/portrait-2.jpg',
+      src: '/images/hero-2.jpg',
       alt: 'A member of the Anthea talent community',
       ratio: 'aspect-[3/4]',
     },
   ],
   right: [
     {
-      src: '/images/portrait-1.jpg',
+      src: '/images/hero-1.jpg',
       alt: 'A member of the Anthea talent community',
       ratio: 'aspect-[3/4]',
     },
@@ -112,14 +112,14 @@ const heroCollage = {
 }
 
 const galleryImages = [
-  {src: '/images/portrait-1.jpg', alt: 'A member of the Anthea talent community'},
-  {src: '/images/event.jpg', alt: 'Anthea community members at a rooftop gathering'},
-  {src: '/images/portrait-2.jpg', alt: 'A member of the Anthea talent community'},
-  {src: '/images/team-collab.jpg', alt: 'Anthea talent collaborating in studio'},
-  {src: '/images/creator.jpg', alt: 'An Anthea creator filming brand content'},
-  {src: '/images/portrait-3.jpg', alt: 'A member of the Anthea talent community'},
-  {src: '/images/community.jpg', alt: 'Anthea community members connecting'},
-  {src: '/images/conversation.jpg', alt: 'An Anthea candidate in conversation'},
+  {src: '/images/gallery-1.jpg', alt: 'Anthea talent collaborating around a table'},
+  {src: '/images/gallery-2.jpg', alt: 'Anthea members working together at a table'},
+  {src: '/images/gallery-3.jpg', alt: 'Anthea community members at a happy hour'},
+  {src: '/images/gallery-4.jpg', alt: 'An Anthea member at an evening event'},
+  {src: '/images/gallery-5.jpg', alt: 'An Anthea creator filming brand content'},
+  {src: '/images/gallery-6.jpg', alt: 'An Anthea creator filming social content'},
+  {src: '/images/gallery-7.jpg', alt: 'An Anthea candidate in conversation'},
+  {src: '/images/gallery-8.jpg', alt: 'An Anthea member presenting to an audience'},
 ]
 
 const talentAreas = [
@@ -129,7 +129,6 @@ const talentAreas = [
   'Content & Creator',
   'Field & Events',
   'Partnerships & Influencer',
-  'Lifecycle & CRM',
   'Product Marketing',
 ]
 
@@ -488,17 +487,17 @@ export function Home() {
               </p>
             </div>
 
-            <div className="reveal mt-12 columns-2 gap-3 sm:columns-3 lg:columns-4 [&>*]:mb-3">
+            <div className="reveal mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {galleryImages.map((img) => (
                 <div
                   key={img.src}
-                  className="break-inside-avoid overflow-hidden rounded-xl shadow-card"
+                  className="aspect-square overflow-hidden rounded-xl shadow-card"
                 >
                   <img
                     src={img.src}
                     alt={img.alt}
                     loading="lazy"
-                    className="w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                   />
                 </div>
               ))}
@@ -625,17 +624,31 @@ export function Home() {
             <h2 className="reveal font-display mx-auto mt-4 max-w-2xl text-[30px] leading-[1.1] md:text-[42px]">
               The faces behind modern growth.
             </h2>
-            <div className="reveal-stagger mt-10 flex flex-wrap justify-center gap-3">
-              {talentAreas.map((area, i) => (
-                <span
-                  key={area}
-                  style={{['--i' as string]: i}}
-                  className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-[15px] font-medium text-ink"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-forest" />
-                  {area}
-                </span>
-              ))}
+            <div className="reveal-stagger mx-auto mt-10 flex flex-col items-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
+                {talentAreas.slice(0, 4).map((area, i) => (
+                  <span
+                    key={area}
+                    style={{['--i' as string]: i}}
+                    className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-[15px] font-medium text-ink"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-forest" />
+                    {area}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap justify-center gap-3">
+                {talentAreas.slice(4).map((area, i) => (
+                  <span
+                    key={area}
+                    style={{['--i' as string]: i + 4}}
+                    className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-[15px] font-medium text-ink"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-forest" />
+                    {area}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </section>

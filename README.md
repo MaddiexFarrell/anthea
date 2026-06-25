@@ -31,10 +31,24 @@ Submissions are written to one of two Notion databases depending on whether the
 visitor selects "I'm hiring" or "I'm looking for a role".
 
 1. Create a Notion internal integration: https://www.notion.so/my-integrations
-2. Create two databases (startups + candidates), each with these properties:
+2. Create two databases. Property names must match exactly.
+
+   Startups (the "I'm hiring" form):
+   - `Name` — Title
+   - `Organization` — Text (the company name)
+   - `Email` — Email
+   - `Roles hiring` — Text
+   - `Role type` — Text
+   - `Message` — Text
+   - `Source` — Text (first-touch UTM attribution)
+
+   Candidates (the "I'm looking for a role" form):
    - `Name` — Title
    - `Email` — Email
-   - `Organization` — Text
+   - `University` — Text
+   - `LinkedIn` — Text
+   - `Role wanted` — Text
+   - `Experience` — Text
    - `Message` — Text
    - `Source` — Text (first-touch UTM attribution)
 3. Share both databases with the integration.

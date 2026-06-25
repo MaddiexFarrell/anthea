@@ -115,8 +115,8 @@ export function Candidates() {
           <div className="reveal mx-auto max-w-7xl">
             <div className="overflow-hidden rounded-2xl shadow-card">
               <img
-                src="/images/event.jpg"
-                alt="Stylish young growth and marketing talent connecting at an Anthea gathering"
+                src="/images/candidates-feature.jpg"
+                alt="A content creator filming herself with a ring light setup"
                 className="aspect-[21/9] h-full w-full object-cover"
                 loading="lazy"
               />
@@ -253,8 +253,8 @@ export function Candidates() {
               {[
                 {src: '/images/portrait-1.jpg', alt: 'Anthea community member'},
                 {src: '/images/creator.jpg', alt: 'Anthea creator filming content'},
-                {src: '/images/portrait-2.jpg', alt: 'Anthea community member'},
-                {src: '/images/portrait-3.jpg', alt: 'Anthea community member'},
+                {src: '/images/community-speaker.jpg', alt: 'An Anthea candidate speaking at a marketing event'},
+                {src: '/images/community-sitting.jpg', alt: 'Two Anthea candidates working together at a table'},
               ].map((img, i) => (
                 <div
                   key={img.src}
