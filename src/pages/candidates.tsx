@@ -229,7 +229,7 @@ export function Candidates() {
                   style={{['--i' as string]: i}}
                   className="flex flex-col gap-4 rounded-2xl border border-paper/12 bg-paper/[0.04] p-7"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg text-highlight-ink">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg leading-none text-highlight-ink">
                     {step.n}
                   </span>
                   <h3 className="text-lg font-semibold text-paper">{step.title}</h3>
@@ -252,9 +252,9 @@ export function Candidates() {
             <div className="reveal-stagger mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
                 {src: '/images/portrait-1.jpg', alt: 'Anthea community member'},
-                {src: '/images/creator.jpg', alt: 'Anthea creator filming content'},
+                {src: '/images/community-rooftop.jpg', alt: 'Anthea community members laughing over drinks at a rooftop happy hour'},
                 {src: '/images/community-speaker.jpg', alt: 'An Anthea candidate speaking at a marketing event'},
-                {src: '/images/community-sitting.jpg', alt: 'Two Anthea candidates working together at a table'},
+                {src: '/images/community-standing.jpg', alt: 'Anthea candidates working on laptops by a sunlit window'},
               ].map((img, i) => (
                 <div
                   key={img.src}

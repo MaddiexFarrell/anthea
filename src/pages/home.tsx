@@ -78,8 +78,8 @@ const pricing = [
 ]
 
 const pricingFeatures = [
-  'Flat fee — never a percentage of salary',
-  'Contingency-based — pay only on a successful hire',
+  'Flat fee, never a percentage of salary',
+  'Contingency-based, so you pay only on a successful hire',
   'A curated, interviewed shortlist from our community',
   'No retainers, no upfront cost',
 ]
@@ -113,7 +113,7 @@ const heroCollage = {
 
 const galleryImages = [
   {src: '/images/gallery-1.jpg', alt: 'Anthea talent collaborating around a table'},
-  {src: '/images/gallery-2.jpg', alt: 'Anthea members working together at a table'},
+  {src: '/images/community-rooftop.jpg', alt: 'Anthea community members laughing over drinks at a rooftop happy hour'},
   {src: '/images/gallery-3.jpg', alt: 'Anthea community members at a happy hour'},
   {src: '/images/gallery-4.jpg', alt: 'An Anthea member at an evening event'},
   {src: '/images/gallery-5.jpg', alt: 'An Anthea creator filming brand content'},
@@ -232,14 +232,21 @@ export function Home() {
 
         {/* Trust strip */}
         <section className="border-y border-border bg-sage-soft">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-2 px-6 py-5 text-center text-sm font-medium text-forest md:gap-x-6">
-            <span>Screened</span>
-            <Dot />
-            <span>Met</span>
-            <Dot />
-            <span>Interviewed</span>
-            <Dot />
-            <span>Matched</span>
+          <div className="reveal-stagger mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-2 px-6 py-5 text-center text-sm font-medium text-forest md:gap-x-6">
+            {['Screened', 'Met', 'Interviewed', 'Matched'].map((label, i, arr) => (
+              <span
+                key={label}
+                style={{['--i' as string]: i}}
+                className="inline-flex items-center gap-x-3 md:gap-x-6"
+              >
+                <span>{label}</span>
+                {i < arr.length - 1 && (
+                  <span aria-hidden="true" className="text-forest/40">
+                    &rarr;
+                  </span>
+                )}
+              </span>
+            ))}
           </div>
         </section>
 
@@ -358,7 +365,7 @@ export function Home() {
                   style={{['--i' as string]: i}}
                   className="flex flex-col gap-4 rounded-2xl border border-paper/12 bg-paper/[0.04] p-7"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg text-highlight-ink">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg leading-none text-highlight-ink">
                     {step.n}
                   </span>
                   <h3 className="text-lg font-semibold text-paper">{step.title}</h3>
@@ -402,8 +409,8 @@ export function Home() {
                 </ul>
               </div>
               <FeatureImage
-                src="/images/event.jpg"
-                alt="Stylish young professionals connecting at an Anthea community event"
+                src="/images/happy-hour.jpg"
+                alt="Anthea community members connecting over drinks at a rooftop happy hour"
               />
             </div>
 

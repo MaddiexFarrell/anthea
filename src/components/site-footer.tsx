@@ -41,7 +41,7 @@ export function SiteFooter() {
             <ul className="mt-4 flex flex-col gap-3 text-sm text-muted">
               <li>Growth marketing</li>
               <li>Performance &amp; paid</li>
-              <li>Lifecycle &amp; CRM</li>
+              <li>Social &amp; community</li>
               <li>Content &amp; brand</li>
             </ul>
           </div>
