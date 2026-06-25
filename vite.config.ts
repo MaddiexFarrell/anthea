@@ -85,6 +85,7 @@ export default defineConfig(({mode}) => {
     'NOTION_STARTUPS_DB_ID',
     'NOTION_CANDIDATES_DB_ID',
     'NOTION_VERSION',
+    'SLACK_WEBHOOK_URL',
   ]) {
     if (!process.env[key] && env[key]) process.env[key] = env[key]
   }

@@ -128,6 +128,32 @@ async function writeToNotion(databaseId, properties) {
   }
 }
 
+// Posts a formatted alert to a Slack Incoming Webhook so submissions are seen in
+// real time. No-ops when SLACK_WEBHOOK_URL is unset, so dev without the secret
+// still works. Callers should invoke this fire-and-forget: a failed alert must
+// never break or slow down the user's submission.
+async function notifyLead(intent, data, source) {
+  const url = process.env.SLACK_WEBHOOK_URL
+  if (!url) return
+
+  const heading =
+    intent === 'hiring' ? ':office: New startup inquiry' : ':wave: New candidate'
+  const lines = Object.entries(data)
+    .filter(([, value]) => value)
+    .map(([key, value]) => `*${key}:* ${value}`)
+  if (source) lines.push(`*source:* ${source}`)
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({text: `${heading}\n${lines.join('\n')}`}),
+  })
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    throw new Error(`Slack responded ${res.status}: ${detail}`)
+  }
+}
+
 /**
  * Handles a POST /api/intake request. Returns true if it handled the request
  * (so callers can stop), false if the method/path was not a match.
@@ -200,12 +226,20 @@ export async function handleIntakeRequest(req, res) {
       JSON.stringify({...clean, source: source || undefined})
     )
     sendJson(res, 201, {ok: true, dryRun: true})
+    // Fire-and-forget: lets you test Slack alerts locally without Notion secrets.
+    notifyLead(intent, clean, source).catch((err) =>
+      console.error('[intake] Slack notification failed:', err)
+    )
     return
   }
 
   try {
     await writeToNotion(databaseId, buildProperties(intent, clean, source))
     sendJson(res, 201, {ok: true})
+    // Fire-and-forget: a failed alert must not fail the submission.
+    notifyLead(intent, clean, source).catch((err) =>
+      console.error('[intake] Slack notification failed:', err)
+    )
   } catch (error) {
     console.error('[intake] Notion write failed:', error)
     sendJson(res, 502, {error: 'Could not record submission. Please try again.'})
