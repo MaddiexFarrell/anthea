@@ -9,11 +9,12 @@
 # Set NOTION_TOKEN, NOTION_STARTUPS_DB_ID, and NOTION_CANDIDATES_DB_ID in the
 # Render dashboard (marked sync: false below so they are not stored in git).
 
-# The Postgres database for the dashboard/API. NOTE: the free plan is wiped
-# after ~30 days — upgrade to a paid plan before relying on it for real data.
+# The Postgres database for the dashboard/API. On the basic-256mb paid plan so
+# it isn't wiped after ~30 days and gets automatic daily backups. Keep this in
+# sync with the live plan in the Render dashboard to avoid a Blueprint downgrade.
 databases:
   - name: anthea-db
-    plan: free
+    plan: basic-256mb
     databaseName: anthea
     user: anthea
 
