@@ -11,9 +11,9 @@ import logging
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
 from django.db.models import Q
 
+from .emails import send_branded_email
 from .models import Notification
 
 User = get_user_model()
@@ -74,22 +74,29 @@ def _email_opted_in_members(assignment, members):
         return
     candidate = assignment.candidate
     login_url = settings.FRONTEND_URL
+    review_url = f'{login_url}portal/candidate/{assignment.id}'
+    title_suffix = f' ({candidate.title})' if candidate.title else ''
     subject = f'New candidate to review: {candidate.name}'
-    body = (
+    text_body = (
         f"Hi,\n\n"
         f"Anthea shared a new candidate for {assignment.company.name} to review: "
-        f"{candidate.name}"
-        f"{f' ({candidate.title})' if candidate.title else ''}.\n\n"
-        f"Review them here:\n{login_url}portal/candidate/{assignment.id}\n\n"
+        f"{candidate.name}{title_suffix}.\n\n"
+        f"Review them here:\n{review_url}\n\n"
         f"— Anthea"
     )
     try:
-        # One message, each recipient hidden from the others.
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            recipients,
+        send_branded_email(
+            subject=subject,
+            to=recipients,
+            heading='New candidate to review',
+            paragraphs=[
+                f'Anthea shared a new candidate for {assignment.company.name} to '
+                f'review: {candidate.name}{title_suffix}.',
+            ],
+            button_label='Review candidate',
+            button_url=review_url,
+            preheader=f'{candidate.name} is ready for your team to review.',
+            text_body=text_body,
         )
     except Exception:
         logger.exception('New-candidate email failed for assignment %s', assignment.id)

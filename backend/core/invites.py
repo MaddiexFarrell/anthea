@@ -10,7 +10,8 @@ import logging
 from allauth.account.models import EmailAddress
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
+
+from .emails import send_branded_email
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -62,7 +63,7 @@ def invite_client(company, email: str, name: str = '') -> dict:
 def _send_invite_email(company, email: str) -> bool:
     login_url = settings.FRONTEND_URL
     subject = f'{company.name} invited you to Anthea'
-    body = (
+    text_body = (
         f"Hi,\n\n"
         f"{company.name} works with Anthea, and you've been given access to "
         f"review candidates we put forward.\n\n"
@@ -71,7 +72,20 @@ def _send_invite_email(company, email: str) -> bool:
         f"— Anthea"
     )
     try:
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
+        send_branded_email(
+            subject=subject,
+            to=[email],
+            heading="You've been invited to Anthea",
+            paragraphs=[
+                f'{company.name} works with Anthea, and you’ve been given access '
+                f'to review the candidates we put forward.',
+            ],
+            button_label='Sign in with Google',
+            button_url=login_url,
+            note=f'Please sign in with this email address: {email}',
+            preheader=f'{company.name} gave you access to review candidates on Anthea.',
+            text_body=text_body,
+        )
         return True
     except Exception:
         logger.exception('Invite email failed for %s', email)
