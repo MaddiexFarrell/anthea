@@ -249,6 +249,10 @@ ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*']
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+# One-click sign out: a GET to /accounts/logout/ logs the user out immediately
+# instead of rendering a confirmation page (the dashboard's "Sign out" is a link).
+ACCOUNT_LOGOUT_ON_GET = True
+
 # Email delivery. allauth sends mail during the email login flow, so an email
 # backend must be reachable or the request errors out. In dev we print emails to
 # the runserver console; in production set EMAIL_* env vars to use real SMTP.
@@ -275,6 +279,11 @@ ACCOUNT_LOGOUT_REDIRECT_URL = FRONTEND_URL
 # everyone else is a client. Configurable via env for other environments.
 ADMIN_EMAIL_DOMAIN = os.environ.get('ADMIN_EMAIL_DOMAIN', 'antheatalent.com')
 SOCIALACCOUNT_ADAPTER = 'accounts.adapters.SocialAccountAdapter'
+
+# One-click Google sign in: a GET to /accounts/google/login/ redirects straight
+# to Google's account chooser instead of showing allauth's "Continue" hand-off
+# page (the dashboard's "Continue with Google" is a link).
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # When we invite a client, we pre-create their account (with a verified email)
 # and add them to a company. These let their Google sign-in attach to that
