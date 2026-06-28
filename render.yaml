@@ -9,6 +9,14 @@
 # Set NOTION_TOKEN, NOTION_STARTUPS_DB_ID, and NOTION_CANDIDATES_DB_ID in the
 # Render dashboard (marked sync: false below so they are not stored in git).
 
+# The Postgres database for the dashboard/API. NOTE: the free plan is wiped
+# after ~30 days — upgrade to a paid plan before relying on it for real data.
+databases:
+  - name: anthea-db
+    plan: free
+    databaseName: anthea
+    user: anthea
+
 services:
   - type: web
     name: anthea-landing
@@ -25,4 +33,55 @@ services:
       - key: NOTION_STARTUPS_DB_ID
         sync: false
       - key: NOTION_CANDIDATES_DB_ID
+        sync: false
+
+  # Django backend (admin + client API). Will also serve the built dashboard.
+  - type: web
+    name: anthea-dashboard
+    runtime: python
+    plan: starter
+    rootDir: backend
+    # Build the React dashboard (Render's Python image includes node/npm), then
+    # install Python deps and gather static files. Django serves the built
+    # dashboard from the same origin.
+    buildCommand: "cd ../dashboard && npm ci && npm run build && cd ../backend && pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    # Migrations run just before each deploy, once the database is reachable.
+    preDeployCommand: "python manage.py migrate"
+    startCommand: "gunicorn config.wsgi:application"
+    autoDeploy: true
+    # Persistent storage for uploaded candidate photos / company logos so they
+    # survive redeploys.
+    disk:
+      name: media
+      mountPath: /opt/render/project/src/backend/media
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: anthea-db
+          property: connectionString
+      # Set these in the Render dashboard (not committed to git):
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: ADMIN_EMAIL_DOMAIN
+        value: antheatalent.com
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
         sync: false

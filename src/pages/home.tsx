@@ -112,11 +112,11 @@ const heroCollage = {
 }
 
 const galleryImages = [
-  {src: '/images/gallery-1.jpg', alt: 'Anthea talent collaborating around a table'},
+  {src: '/images/community-speaker-2.jpg', alt: 'An Anthea community member speaking at an event'},
   {src: '/images/community-rooftop.jpg', alt: 'Anthea community members laughing over drinks at a rooftop happy hour'},
   {src: '/images/gallery-3.jpg', alt: 'Anthea community members at a happy hour'},
   {src: '/images/gallery-4.jpg', alt: 'An Anthea member at an evening event'},
-  {src: '/images/gallery-5.jpg', alt: 'An Anthea creator filming brand content'},
+  {src: '/images/filming-content.jpg', alt: 'An Anthea creator filming brand content with a candidate'},
   {src: '/images/gallery-6.jpg', alt: 'An Anthea creator filming social content'},
   {src: '/images/gallery-7.jpg', alt: 'An Anthea candidate in conversation'},
   {src: '/images/gallery-8.jpg', alt: 'An Anthea member presenting to an audience'},
@@ -266,11 +266,11 @@ export function Home() {
               </p>
             </div>
 
-            <div className="reveal-stagger mt-14 grid gap-4 md:grid-cols-3">
+            <div className="reveal-stagger mt-14 grid gap-4 md:grid-cols-12">
               {/* A — large image card */}
               <div
                 style={{['--i' as string]: 0}}
-                className="relative min-h-[320px] overflow-hidden rounded-2xl md:col-span-2"
+                className="relative min-h-[320px] overflow-hidden rounded-2xl md:col-span-8"
               >
                 <img
                   src="/images/studio.jpg"
@@ -283,9 +283,10 @@ export function Home() {
                   <h3 className="font-display text-3xl">
                     Screened for skill and presence
                   </h3>
-                  <p className="mt-2 max-w-md text-[15px] text-paper/80 leading-[1.6]">
-                    We vet the work <em>and</em> the way they show up — the magnetic,
-                    on-brand people who make a startup impossible to scroll past.
+                  <p className="mt-2 max-w-2xl text-[15px] text-paper/80 leading-[1.6]">
+                    We vet the work, communication, and energy behind every
+                    candidate, so you meet people who can represent your startup
+                    well from day one.
                   </p>
                 </div>
               </div>
@@ -293,14 +294,14 @@ export function Home() {
               {/* B — shortlist (icon) */}
               <div
                 style={{['--i' as string]: 1}}
-                className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-7"
+                className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-7 md:col-span-4"
               >
                 <IconBadge icon={Users} />
                 <div>
                   <h3 className="font-display text-2xl text-ink">A standout shortlist</h3>
                   <p className="mt-2 text-[15px] text-muted leading-[1.6]">
-                    Three to five people worth meeting — the kind who light up a room and
-                    a pitch deck alike.
+                    Three to five candidates worth your time, each with the skill to
+                    do the work and the presence to light up a room.
                   </p>
                 </div>
               </div>
@@ -308,7 +309,7 @@ export function Home() {
               {/* C — interviews (highlight) */}
               <div
                 style={{['--i' as string]: 2}}
-                className="flex flex-col gap-5 rounded-2xl border border-highlight/70 bg-highlight/35 p-7"
+                className="flex flex-col gap-5 rounded-2xl border border-highlight/70 bg-highlight/35 p-7 md:col-span-5"
               >
                 <IconBadge icon={ClipboardCheck} tone="highlight" />
                 <div>
@@ -316,8 +317,8 @@ export function Home() {
                     Structured interviews
                   </h3>
                   <p className="mt-2 text-[15px] text-highlight-ink/80 leading-[1.6]">
-                    Every candidate assessed for craft and for how they carry a brand — so
-                    the read you get is real.
+                    Every candidate assessed for craft, communication, and how
+                    they carry a brand, so the read you get is real.
                   </p>
                 </div>
               </div>
@@ -325,14 +326,14 @@ export function Home() {
               {/* D — warm intros (wide icon) */}
               <div
                 style={{['--i' as string]: 3}}
-                className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-7 md:col-span-2 md:flex-row md:items-center md:gap-8"
+                className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-7 md:col-span-7"
               >
                 <IconBadge icon={Handshake} />
                 <div>
                   <h3 className="font-display text-2xl text-ink">Warm introductions</h3>
                   <p className="mt-2 max-w-lg text-[15px] text-muted leading-[1.6]">
-                    When there&rsquo;s a fit, we make a direct introduction with context
-                    on both sides — no cold outreach, no waiting in a queue.
+                    When there's a fit, we introduce both sides with context, clarity, 
+                    and a real reason to meet.
                   </p>
                 </div>
               </div>

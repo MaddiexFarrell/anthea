@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   Anthea dashboard — shares the marketing site's design system.
+   Warm paper canvas, deep forest-green ink, Newsreader serif for display,
+   Inter for UI. Kept in sync with ../../src/index.css.
+   ============================================================================= */
+
+@theme {
+  --color-background: #F8F8F6;
+  --color-foreground: #14271d;
+
+  --color-paper: #f7f5ef;
+  --color-cream: #f1efe6;
+  --color-surface: #ffffff;
+
+  /* Subtle neutral used for hover states; sits just under --color-background. */
+  --color-hover: #ededeb;
+
+  --color-forest: #0b3b29;
+  --color-forest-deep: #062417;
+  --color-forest-hover: #0f4a34;
+  --color-ink: #0c2a1e;
+
+  --color-sage: #e7eee4;
+  --color-sage-soft: #eef2ea;
+  --color-highlight: #dbe7b6;
+  --color-highlight-ink: #2c3a12;
+
+  --color-muted: #51605a;
+  --color-muted-foreground: #6a7872;
+  --color-border: rgba(12, 42, 30, 0.12);
+  --color-border-strong: rgba(12, 42, 30, 0.22);
+
+  /* Flatter corners: 6px across cards, buttons, tables, inputs, dialogs, etc. */
+  --radius: 0.375rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.375rem;
+  --radius-2xl: 0.375rem;
+
+  --font-family-headline: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-family-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "ss01" 1;
+  }
+
+  button,
+  [role="button"],
+  a {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-family-headline);
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    line-height: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+}

@@ -21,3 +21,13 @@ dist-ssr
 logs
 *.log
 npm-debug.log*
+
+# Python / Django (backend)
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+db.sqlite3-journal
+# Collected static files and user uploads (generated at build / runtime).
+backend/staticfiles/
+backend/media/
