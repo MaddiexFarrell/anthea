@@ -1,29 +1,41 @@
 /** Shown when nobody is logged in. Links to Django's Google login; after a
-    successful sign-in Django redirects back here (see FRONTEND_URL). */
+    successful sign-in Django redirects back here (see FRONTEND_URL).
+
+    Split layout: sign-in panel on the left, full-bleed brand photo on the
+    right (hidden on small screens). */
 export function SignIn() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-6">
-      <div className="w-full max-w-sm">
-        <div className="rounded-2xl border border-border bg-surface p-10 text-center shadow-card">
-          <span className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-forest font-display text-2xl text-paper">
-            A
-          </span>
-          <p className="eyebrow mb-3">Anthea</p>
-          <h1 className="font-display text-3xl text-forest">Welcome back</h1>
+    <div className="flex min-h-screen bg-paper">
+      <div className="flex w-full flex-col items-center justify-center px-6 py-10 text-center sm:px-10 lg:w-1/2 lg:px-16">
+        <div className="mx-auto w-full max-w-sm">
+          <img
+            src="/anthea-logo.png"
+            alt="Anthea"
+            draggable={false}
+            className="mx-auto mb-8 h-8 w-auto -translate-y-10 select-none"
+          />
+          <h1 className="font-display text-4xl text-forest">Welcome back</h1>
           <p className="mx-auto mt-3 max-w-xs text-sm text-muted">
-            Sign in to manage companies, candidates, and placements.
+            Review and manage candidates.
           </p>
           <a
             href="/accounts/google/login/"
-            className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-surface px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-hover"
+            className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-md border border-border bg-surface px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-hover"
           >
             <GoogleMark />
             Continue with Google
           </a>
         </div>
-        <p className="mt-6 text-center text-xs text-muted">
-          Anthea — growth & marketing talent for startups
-        </p>
+      </div>
+
+      <div className="hidden p-3 lg:block lg:w-1/2">
+        <div className="relative h-full w-full overflow-hidden rounded-[20px]">
+          <img
+            src="/images/conversation.jpg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
       </div>
     </div>
   )
