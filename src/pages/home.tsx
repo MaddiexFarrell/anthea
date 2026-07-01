@@ -9,7 +9,7 @@ import {useReveal} from '../lib/use-reveal'
 const HOME_META: DocumentMeta = {
   title: 'Anthea — Hire growth & marketing talent with presence',
   description:
-    'Anthea is a community of magnetic, in-demand growth and marketing talent — the polished, social, camera-ready people fast-growing startups build their brand around. Pre-screened for skill and presence, with simple flat-fee pricing — $4,000 per intern, $10,000 per full-time hire.',
+    'Anthea is a curated network of early-career growth and marketing talent, screened for skill, communication, and startup fit — candidates who know how to build attention, carry a brand, and move fast inside a startup. Simple flat-fee pricing: $4,000 per intern, $10,000 per full-time hire.',
   canonical: 'https://antheatalent.com/',
   ogImage: 'https://antheatalent.com/hero.jpg',
   jsonLd: [
@@ -104,8 +104,8 @@ const heroCollage = {
       ratio: 'aspect-[3/4]',
     },
     {
-      src: '/images/creator.jpg',
-      alt: 'An Anthea creator filming brand content',
+      src: '/images/hero-4.jpg',
+      alt: 'An Anthea community member speaking to a room of people',
       ratio: 'aspect-[4/3]',
     },
   ],
@@ -152,10 +152,10 @@ export function Home() {
                 <span className="text-forest italic">with presence.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg text-muted leading-[1.6]">
-                Anthea is a community of magnetic, in-demand growth and marketing talent —
-                the polished, social, camera-ready people fast-growing startups build
-                their brand around. Pre-screened for skill <em>and</em> presence, ready to
-                move.
+                Anthea is a curated network of early-career growth and marketing
+                talent, screened for skill, communication, and startup fit. The kind
+                of candidates who know how to build attention, carry a brand, and
+                move fast inside a startup.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Link
@@ -260,9 +260,10 @@ export function Home() {
                 <span className="text-faded">not a stack of resumes.</span>
               </h2>
               <p className="mt-5 max-w-2xl text-lg text-muted leading-[1.6]">
-                The startup landscape doesn&rsquo;t just want skills — it wants the people
-                who make a brand impossible to ignore. We screen for both, so the only
-                candidates you meet are ones worth showing off.
+                The right growth or marketing hire has more than a good resume. They
+                have taste, energy, communication, and a feel for what makes people
+                pay attention. Anthea screens for that, so every candidate you meet
+                already makes sense.
               </p>
             </div>
 
@@ -349,7 +350,12 @@ export function Home() {
           <div className="fx-grid-on-dark pointer-events-none absolute inset-0 opacity-70" />
           <div className="relative mx-auto max-w-7xl">
             <div className="reveal max-w-3xl">
-              <p className="eyebrow text-highlight">How we work</p>
+              <p
+                className="eyebrow text-[13px] font-bold"
+                style={{color: 'var(--color-highlight)'}}
+              >
+                How we work
+              </p>
               <h2 className="font-display mt-4 text-[34px] leading-[1.08] md:text-[46px]">
                 Screened, met, <span className="text-paper/45">and matched.</span>
               </h2>
@@ -367,7 +373,7 @@ export function Home() {
                   className="flex flex-col gap-4 rounded-2xl border border-paper/12 bg-paper/[0.04] p-7"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg leading-none text-highlight-ink">
-                    {step.n}
+                    <span className="translate-y-[1px]">{step.n}</span>
                   </span>
                   <h3 className="text-lg font-semibold text-paper">{step.title}</h3>
                   <p className="text-[15px] text-paper/65 leading-[1.6]">{step.body}</p>
@@ -388,16 +394,16 @@ export function Home() {
                   A network the whole <span className="text-faded">ecosystem wants.</span>
                 </h2>
                 <p className="mt-5 max-w-md text-lg text-muted leading-[1.6]">
-                  Anthea isn&rsquo;t a job board. It&rsquo;s a tight-knit circle of the
-                  most sought-after growth and marketing talent — well-connected, socially
-                  fluent, and already vetted. The moment you have a role, the people
-                  everyone&rsquo;s after are already in the room.
+                  Anthea is a curated circle of early-career growth and marketing talent
+                  with taste, energy, and the kind of presence you notice fast. We meet
+                  them before there&rsquo;s a role, so when you need someone, the right
+                  people are already close.
                 </p>
                 <ul className="mt-7 flex flex-col gap-3">
                   {[
                     'A curated circle of in-demand talent',
-                    'Already met, interviewed, and reference-checked',
-                    'Connected, social, and ready to represent you',
+                    'Screened for skill, taste, and communication',
+                    'The people who make a startup feel alive',
                   ].map((item) => (
                     <li
                       key={item}
@@ -410,8 +416,8 @@ export function Home() {
                 </ul>
               </div>
               <FeatureImage
-                src="/images/happy-hour.jpg"
-                alt="Anthea community members connecting over drinks at a rooftop happy hour"
+                src="/images/networking-event.jpg"
+                alt="Anthea community members connecting at an evening networking event"
               />
             </div>
 
@@ -420,7 +426,8 @@ export function Home() {
               <div className="md:order-2">
                 <p className="eyebrow">Fast placements</p>
                 <h2 className="font-display mt-4 text-[30px] leading-[1.08] md:text-[42px]">
-                  Filled in days, <span className="text-faded">not weeks.</span>
+                  The shortlist is already{' '}
+                  <span className="text-faded">closer than you think.</span>
                 </h2>
                 <p className="mt-5 max-w-md text-lg text-muted leading-[1.6]">
                   Because the screening is already done, we move the moment you brief us.
@@ -460,9 +467,10 @@ export function Home() {
                   <span className="text-faded">that are the brand.</span>
                 </h2>
                 <p className="mt-5 max-w-md text-lg text-muted leading-[1.6]">
-                  Growth today is content, community, and culture as much as performance.
-                  We specialize in the people-facing, camera-ready roles that put a face
-                  on your company — the talent your audience actually wants to follow.
+                  Growth today happens in public. It&rsquo;s content, community, events,
+                  partnerships, social, and the moments that make people care. We find
+                  the early-career talent who can help a startup feel bigger, sharper,
+                  and more alive.
                 </p>
                 <Link
                   to="/contact?intent=hiring"
@@ -473,8 +481,8 @@ export function Home() {
                 </Link>
               </div>
               <FeatureImage
-                src="/images/creator.jpg"
-                alt="A polished young creator filming social content for a brand"
+                src="/images/hero-4.jpg"
+                alt="An Anthea community member speaking to a room of people"
               />
             </div>
           </div>
@@ -486,12 +494,11 @@ export function Home() {
             <div className="reveal max-w-3xl">
               <p className="eyebrow">The community</p>
               <h2 className="font-display mt-4 text-[34px] leading-[1.08] md:text-[46px]">
-                The talent the ecosystem{' '}
-                <span className="text-faded">is already chasing.</span>
+                A circle <span className="text-faded">people want in.</span>
               </h2>
               <p className="mt-5 max-w-2xl text-lg text-muted leading-[1.6]">
-                A glimpse of the people in our network — polished, social, and ready to be
-                the face of what you&rsquo;re building.
+                A look inside the Anthea circle, full of early-career growth and marketing
+                talent with taste, confidence, and the kind of energy people remember.
               </p>
             </div>
 
@@ -671,8 +678,9 @@ export function Home() {
                   Ready to meet your next growth hire?
                 </h2>
                 <p className="mt-5 max-w-xl text-lg text-paper/70 leading-[1.6]">
-                  Tell us about the role and we&rsquo;ll come back with a curated
-                  shortlist of screened candidates — usually within days.
+                  Tell us what you&rsquo;re building and who you need next. We&rsquo;ll
+                  share a focused shortlist of candidates, with context on why each one
+                  could be a fit.
                 </p>
               </div>
               <div className="flex flex-col gap-3 md:items-end">

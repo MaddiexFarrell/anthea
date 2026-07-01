@@ -88,10 +88,10 @@ export function Candidates() {
               <span className="text-forest italic">after.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-[1.6]">
-              Anthea works with the growth and marketing talent the startup world wants in
-              the room — sharp, social, and ready to be the face of what they&rsquo;re
-              building. We learn what makes you stand out and put you in front of the
-              teams who want exactly that.
+              Anthea is for early-career growth and marketing talent with taste, energy,
+              and the kind of presence people remember. We get to know what makes you
+              stand out, then introduce you to startups looking for someone exactly like
+              you.
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
               <Link
@@ -116,7 +116,7 @@ export function Candidates() {
             <div className="overflow-hidden rounded-2xl shadow-card">
               <img
                 src="/images/candidates-feature.jpg"
-                alt="A content creator filming herself with a ring light setup"
+                alt="Anthea community members connecting at a networking event"
                 className="aspect-[21/9] h-full w-full object-cover"
                 loading="lazy"
               />
@@ -168,8 +168,8 @@ export function Candidates() {
                     Matched to your strengths
                   </h3>
                   <p className="mt-2 text-[15px] text-muted leading-[1.6]">
-                    We introduce you where you fit — not wherever there&rsquo;s an
-                    opening.
+                    We introduce you where your strengths, goals, and energy actually
+                    fit. Not just wherever there&rsquo;s an opening.
                   </p>
                 </div>
               </div>
@@ -185,7 +185,8 @@ export function Candidates() {
                     Rooms with room to grow
                   </h3>
                   <p className="mt-2 text-[15px] text-highlight-ink/80 leading-[1.6]">
-                    Fast-growing startups where early-career talent gets real ownership.
+                    Fast-growing startups where early-career talent can get real
+                    ownership, learn quickly, and make a visible impact.
                   </p>
                 </div>
               </div>
@@ -193,7 +194,7 @@ export function Candidates() {
               {/* Warm intros (wide) */}
               <div
                 style={{['--i' as string]: 3}}
-                className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-7 md:col-span-3 md:flex-row md:items-center md:gap-8"
+                className="grid gap-6 rounded-2xl border border-border bg-surface p-7 md:col-span-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:items-center md:gap-10"
               >
                 <div className="flex items-center gap-5">
                   <IconBadge icon={Handshake} />
@@ -201,10 +202,10 @@ export function Candidates() {
                     Introduced, not forwarded
                   </h3>
                 </div>
-                <p className="max-w-2xl text-[15px] text-muted leading-[1.6] md:ml-auto md:text-right">
+                <p className="text-[15px] text-muted leading-[1.6] md:border-l md:border-border md:pl-10">
                   When there&rsquo;s a fit, we introduce you directly to the hiring team
-                  with context on both sides — so you walk in already understood, never
-                  just another resume in an inbox.
+                  with context, so you walk in already understood instead of sitting in
+                  another inbox.
                 </p>
               </div>
             </div>
@@ -216,7 +217,9 @@ export function Candidates() {
           <div className="fx-grid-on-dark pointer-events-none absolute inset-0 opacity-70" />
           <div className="relative mx-auto max-w-7xl">
             <div className="reveal max-w-3xl">
-              <p className="eyebrow text-highlight">How it works</p>
+              <p className="eyebrow" style={{color: 'var(--color-highlight)'}}>
+                How it works
+              </p>
               <h2 className="font-display mt-4 text-[34px] leading-[1.08] md:text-[46px]">
                 From application{' '}
                 <span className="text-paper/45">to a real introduction.</span>
@@ -230,7 +233,7 @@ export function Candidates() {
                   className="flex flex-col gap-4 rounded-2xl border border-paper/12 bg-paper/[0.04] p-7"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight font-display text-lg leading-none text-highlight-ink">
-                    {step.n}
+                    <span className="translate-y-[1px]">{step.n}</span>
                   </span>
                   <h3 className="text-lg font-semibold text-paper">{step.title}</h3>
                   <p className="text-[15px] text-paper/65 leading-[1.6]">{step.body}</p>
@@ -251,7 +254,7 @@ export function Candidates() {
             </div>
             <div className="reveal-stagger mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
-                {src: '/images/portrait-1.jpg', alt: 'Anthea community member'},
+                {src: '/images/portrait-1.jpg', alt: 'An Anthea community member in conversation at an event'},
                 {src: '/images/community-rooftop.jpg', alt: 'Anthea community members laughing over drinks at a rooftop happy hour'},
                 {src: '/images/community-speaker.jpg', alt: 'An Anthea candidate speaking at a marketing event'},
                 {src: '/images/community-standing.jpg', alt: 'Anthea candidates working on laptops by a sunlit window'},
@@ -280,8 +283,9 @@ export function Candidates() {
               Ready to be matched?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted leading-[1.6]">
-              Send us your background and what you&rsquo;re looking for. We&rsquo;ll be in
-              touch within 24 hours.
+              Send us your background, what you&rsquo;re good at, and what kind of role
+              you want next. If there&rsquo;s a fit, we&rsquo;ll reach out with next
+              steps.
             </p>
             <div className="mt-9 flex justify-center">
               <Link
